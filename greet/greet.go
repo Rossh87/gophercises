@@ -1,7 +1,7 @@
-package greet
+package main
 
 import "fmt"
 
-func Greet() {
+func main() {
 	fmt.Println("hellow world!")
 }
