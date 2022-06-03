@@ -44,11 +44,7 @@ func main() {
 
 		answerCh := make(chan string)
 
-		go func() {
-			var answer string
-			fmt.Scanf("%s\n", &answer)
-			answerCh <- answer
-		}()
+		SolicitAnswer(answerCh)
 
 		select {
 		case <-timer.C:
@@ -65,6 +61,13 @@ func main() {
 
 }
 
+func SolicitAnswer(receiver chan string) {
+	go func() {
+		var ans string
+		fmt.Scanf("%s\n", &ans)
+		receiver <- ans
+	}()
+}
 func parseLines(lines [][]string) []problem {
 	ret := make([]problem, len(lines))
 
